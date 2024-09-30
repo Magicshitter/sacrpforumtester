@@ -1,0 +1,70 @@
+@keyframes rainbowWave {
+  0% { background-color: #ff0000; }
+  16% { background-color: #ff7f00; }
+  32% { background-color: #ffff00; }
+  48% { background-color: #00ff00; }
+  64% { background-color: #0000ff; }
+  80% { background-color: #4b0082; }
+  100% { background-color: #9400d3; }
+}
+
+.buttonRainbow {
+  animation: rainbowWave 2s linear infinite;
+}
+
+.inputField {
+  background-color: #1f2937;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 2px solid #374151;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.fade-box {
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.show-box {
+  max-height: 10rem;
+  opacity: 1;
+}
+
+.toggleButton {
+  appearance: none;
+  background-color: #374151;
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:checked {
+  background-color: #3b82f6;
+}
+
+.toggleButton:before {
+  content: '';
+  background-color: white;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:checked:before {
+  transform: translateX(1rem);
+}
