@@ -5,20 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SACRP Forum</title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
 
-  <!-- GSAP Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 
-  <!-- Locomotive Scroll for motion blur -->
   <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css">
   <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
 
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 
   <script defer src="script.js"></script>
@@ -33,6 +28,17 @@
     h1 {
       font-weight: 600;
       color: #e0e0e0;
+    }
+
+    #dropArea {
+      border: 2px dashed #5a5a5a;
+      padding: 20px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      text-align: center;
     }
 
     .container {
@@ -182,7 +188,9 @@
           <input type="text" id="radioTbx" name="radioTbx" class="inputField" placeholder="Enter TBX ID for Radio">
         </div>
       </div>
-
+      <div id="dropArea">
+        <p id="dropText">Drag & Drop your file here</p>
+      </div>
       <button type="submit">Submit</button>
     </form>
   </div>
