@@ -1,3 +1,5 @@
+let uploadedFile = null;
+
 document.getElementById("forumForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -32,6 +34,11 @@ document.getElementById("forumForm").addEventListener("submit", function(e) {
       ? `TBX ID: ${document.getElementById('radioTbx').value}`
       : "false",
   };
+
+  const formData = new FormData();
+  if (uploadedFile) {
+    formData.append('file', uploadedFile);
+  }
 
   fetch("https://discord.com/api/webhooks/1289291868479426714/FEXjN4DY7wNY-wsXgcRSrQ9NzZtfH85xik-ijG0II2ylkFI8qlUuuFuN71WBqz96XbFG", {
     method: "POST",
@@ -68,8 +75,24 @@ document.getElementById("forumForm").addEventListener("submit", function(e) {
   .then(data => {
     console.log("Success:", data);
     alert("Form submitted successfully!");
-  })
+  });
+
+  if (uploadedFile) {
+    fetch("https://discord.com/api/webhooks/1289291868479426714/FEXjN4DY7wNY-wsXgcRSrQ9NzZtfH85xik-ijG0II2ylkFI8qlUuuFuN71WBqz96XbFG", {
+      method: 'POST',
+      body: formData
+    }).then(response => {
+      if (response.ok) {
+        alert('File sent successfully');
+      } else {
+        alert('Failed to send file');
+      }
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+  }
 });
+
 
 document.getElementById('blacklistToggle').addEventListener('change', function() {
   const blacklistBox = document.getElementById('blacklistBox');
@@ -90,4 +113,21 @@ document.getElementById('radioToggle').addEventListener('change', function() {
   } else {
     radioBox.classList.remove('show-box');
   }
+});
+
+const dropArea = document.getElementById('dropArea');
+dropArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropArea.style.backgroundColor = '#f0f0f0';
+});
+
+dropArea.addEventListener('dragleave', () => {
+    dropArea.style.backgroundColor = '';
+});
+
+dropArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropArea.style.backgroundColor = '';
+    uploadedFile = e.dataTransfer.files[0];
+    document.getElementById('dropText').textContent = uploadedFile.name;
 });
